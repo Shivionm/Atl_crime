@@ -26,3 +26,7 @@ atl_2 <- atl_1 %>% separate("Report Date_1", c("Report.Year", "Report.Month",
 atl_UCR <- atl_2 %>% group_by(`UCR Literal`) %>% summarise(count = n())
 colnames(atl_UCR)[colnames(atl_UCR) == "count"] <- "Number_of_UCR"
 colnames(atl_UCR)[colnames(atl_UCR) == "UCR Literal"] <- "UCR"
+
+atl_UCR %>% ggplot(aes(Number_of_UCR, UCR)) + geom_point() + 
+  ggtitle(expression("Types of Crimes"), "") + 
+  theme(plot.title = element_text(size = 20, color = "red", hjust = .50))
