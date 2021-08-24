@@ -25,3 +25,7 @@ atl_2 <- atl_1 %>% separate("Report Date_1", c("Report.Year", "Report.Month",
 
 atl_Month <- atl_2 %>% group_by(`Report.Month`) %>% summarise(count = n())
 colnames(atl_Month)[colnames(atl_Month) == "count"] <- "Number_of_Crime"
+
+atl %>% ggplot(aes(x = Report.Month)) + geom_bar(aes(fill = Report.Month)) + 
+  coord_flip() + ggtitle(expression("Total Crime by Month"), "") + 
+  theme(plot.title = element_text(size = 20, color = "red", hjust = .50))
