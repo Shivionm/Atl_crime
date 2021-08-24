@@ -22,3 +22,6 @@ atl_1$'Report Date' <- mdy(atl_1$'Report Date')
 atl_1$`Report Date_1` = atl_1$`Report Date`
 atl_2 <- atl_1 %>% separate("Report Date_1", c("Report.Year", "Report.Month",
                                                "Report.Day"), "-")
+
+atl_Year <- atl_2 %>% group_by(`Report.Year`) %>% summarise(count = n())
+colnames(atl_Year)[colnames(atl_Year) == "count"] <- "Crime_Count"
