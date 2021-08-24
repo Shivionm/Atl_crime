@@ -17,3 +17,8 @@ atl_1 <- atl_1[ , !names(atl_1) %in%
 atl_1 <- atl_1 [ , !names(atl_1) %in% c("Location", "NPU", "UCR #", "IBR Code",
                                         "Possible Date", "Possible Time")]
 atl_1 <- na.omit(atl_1)
+
+atl_1$'Report Date' <- mdy(atl_1$'Report Date')
+atl_1$`Report Date_1` = atl_1$`Report Date`
+atl_2 <- atl_1 %>% separate("Report Date_1", c("Report.Year", "Report.Month",
+                                               "Report.Day"), "-")
