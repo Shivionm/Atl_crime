@@ -26,3 +26,9 @@ atl_2 <- atl_1 %>% separate("Report Date_1", c("Report.Year", "Report.Month",
 atl_Neighborhood <- atl_2 %>% group_by(`Neighborhood`) %>% summarise(count = n())
 colnames(atl_Neighborhood)[colnames(atl_Neighborhood) == "count"] <- 
   "Crime_in_Neighborhood"
+
+top_n(atl_Neighborhood, n = 10, Crime_in_Neighborhood ) %>% 
+  ggplot(aes(Neighborhood,Crime_in_Neighborhood)) + geom_point() + 
+  coord_flip() + 
+  ggtitle("The top 10 \n Neighborhood with the most crime") + 
+  theme(plot.title = element_text(size = 20, color = "red", hjust = .50))
