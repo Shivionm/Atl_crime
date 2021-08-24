@@ -22,3 +22,7 @@ atl_1$'Report Date' <- mdy(atl_1$'Report Date')
 atl_1$`Report Date_1` = atl_1$`Report Date`
 atl_2 <- atl_1 %>% separate("Report Date_1", c("Report.Year", "Report.Month",
                                                "Report.Day"), "-")
+
+atl_Neighborhood <- atl_2 %>% group_by(`Neighborhood`) %>% summarise(count = n())
+colnames(atl_Neighborhood)[colnames(atl_Neighborhood) == "count"] <- 
+  "Crime_in_Neighborhood"
